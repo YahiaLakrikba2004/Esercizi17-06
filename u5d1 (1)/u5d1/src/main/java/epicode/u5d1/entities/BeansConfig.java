@@ -1,13 +1,24 @@
 package epicode.u5d1.entities;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
+@PropertySource("classpath:application.properties")
 public class BeansConfig {
+
+    @Autowired
+    private Menu menu;
+
+    @Value("${cover.charge:1.50}")
+    private double coverCharge;
 
     @Bean
     public Topping toppingTomatoBean() {
@@ -66,7 +77,7 @@ public class BeansConfig {
 
     @Bean
     public Pizza pizzaTonnoECipolleBean() {
-        return createPizza("Tuna & onion pizza", false, toppingTomatoBean(), toppingOnionBean(), toppingTunaBean() );
+        return createPizza("Tuna & onion pizza", false, toppingTomatoBean(), toppingOnionBean(), toppingTunaBean());
     }
 
     @Bean
@@ -118,4 +129,8 @@ public class BeansConfig {
         }
         return new Pizza(name, toppingList, isXl);
     }
+
+
 }
+
+

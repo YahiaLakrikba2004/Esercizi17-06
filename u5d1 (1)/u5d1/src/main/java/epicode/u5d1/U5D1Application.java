@@ -18,6 +18,8 @@ public class U5D1Application {
 
 		Menu m = (Menu) ctx.getBean("menu");
 
+
+
 		m.printMenu();
 		ctx.close();
 	}
